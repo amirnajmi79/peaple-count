@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<style>
+a:link, a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: red;
+}
+</style>
+</head>
+<body>
+
+
+
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <p>
+      انتخاب کنید
+    </p>
+  </div>
+  <div class="d-flex justify-content-center">
+    <a class="ml-1" href="/detect-by-image" target="_blank">عکس</a>
+    <a class="ml-1" href="/detect-by-video" target="_blank">فیلم</a>
+    <a class="ml-1" href="/detect-by-camera" target="_blank">دوربین</a>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+        <input class="form-control" id="fileupload" type="file" name="fileupload" />
+        <button class="btn btn-primary" id="upload-button" onclick="uploadFile()"> ارسال </button>
+  </div>
+
+    <div id="div_imagetranscrits" class="d-flex justify-content-center mt-4">
+
+    </div>
+</div>
+</body>
+
+<script>
+    async function uploadFile() {
+        let formData = new FormData();          
+        let result;
+        formData.append("file", fileupload.files[0]);
+        await fetch('/detect-by-image-upload', {
+          method: "POST", 
+          body: formData,
+        }).then(response => console.log(response.status) || response) // output the status and return response
+        .then(response => response.text()) // send response body to next then chain
+        .then(
+          body => result = body
+          ) 
+
+          document.getElementById("div_imagetranscrits").innerHTML = '<img class="col-8" src="data:image/png;base64, '+ result +'" alt="Red dot" />'; 
+    }
+</script>
+</html>

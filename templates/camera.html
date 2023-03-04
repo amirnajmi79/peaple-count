@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<style>
+a:link, a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: red;
+}
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <p>
+        انتخاب کنید
+      </p>
+    </div>
+    <div class="d-flex justify-content-center mt-2">
+      <a class="ml-1" href="/detect-by-image" target="_blank">عکس</a>
+      <a class="ml-1" href="/detect-by-video" target="_blank">فیلم</a>
+      <a class="ml-1" href="/detect-by-camera" target="_blank">دوربین</a>
+    </div>
+     <div class="d-flex justify-content-center mt-4">
+      <div class="col-8">
+            <img src="{{ url_for('video_feed') }}" width="100%">
+                    </div>
+     </div>
+  </div>
+</body>
+</html>
